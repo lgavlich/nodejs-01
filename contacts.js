@@ -23,12 +23,11 @@ const getContactById = async (contactId) => {
 const removeContact = async (contactId) => {
   // ...твой код
   const contacts = await listContacts();
-  const idx = contacts.findIndex((contact) => contact.id === id);
+  const idx = contacts.findIndex((contact) => contact.id === contactId);
   if (idx === -1) {
     return null;
   }
-  const delContact = contacts[idx];
-  contacts.splice(idx, 1);
+  const [delContact] = contacts.splice(idx, 1);
   await fs.writeFile(contactPath, JSON.stringify(contacts, null, 2));
   return delContact;
 };
